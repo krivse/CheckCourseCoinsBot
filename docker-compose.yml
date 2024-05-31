@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  bot:
+    build:
+      context: .
+    command: python3 -m bot
+    restart: always
+
