@@ -2,8 +2,9 @@ version: '3.8'
 
 services:
   bot:
-    build:
-      context: .
+    image: krivse/cmc_bot:v1.1.7.2024.1025
+#    build:
+#      context: .
     command: python3 -m bot
     restart: always
 
