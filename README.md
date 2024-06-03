@@ -28,6 +28,7 @@ Once the bot is running, you can interact with it through the Telegram app. Here
             : subscribing to an event
 
 * Repeating the algorithm will add another pair or set new values
+* When the threshold value is reached, the pair is automatically deleted
 ~~~~
 
 #### Launch the application with docker-compose:
