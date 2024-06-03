@@ -1,6 +1,8 @@
 from aiogram import F, Dispatcher
 
 import asyncio
+
+from coinmarketcapapi import CoinMarketCapAPIError
 from os import getenv
 from aiogram import html
 from aiogram.filters import CommandStart
@@ -68,7 +70,8 @@ async def state_symbol(message: Message, state: FSMContext) -> None:
         await message.answer(
             'The pair is not found, try again and enter the name of the coin to check!\n'
             'Enter only the name of the coin, not the number')
-
+    except CoinMarketCapAPIError as e:
+        await message.answer(str(e))
 
 async def state_min_value(message: Message, state: FSMContext) -> None:
     """Setting the minimum value of price
@@ -120,12 +123,12 @@ async def state_max_value(message: Message, state: FSMContext) -> None:
         max_p=max_p
     )
     while True:
-        for symbol, values in ts.get_data.items():
+        for symbol, values in list(ts.get_data.items()):
             # Checking the price of the pair from api coinmarketcap
             price = await get_price(symbol)
             # Checking the values of the pair from the temporary storage
             if any([price <= float(values.get('min')), price >= float(values.get('max'))]):
-                await message.answer(f'{symbol} price: {price}, quote: {round(price - old_price), 2}')
+                await message.answer(f'{symbol} price: {price}, quote: {round(price - old_price, 2)}')
                 ts.del_data(symbol)
         # Waiting for the next cycle in seconds for the checking the price
         await asyncio.sleep(int(getenv('SECONDS')))
