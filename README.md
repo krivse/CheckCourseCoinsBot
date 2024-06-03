@@ -15,7 +15,7 @@ To get started with CheckCourseCoinsBot, follow these steps:
 1. Clone the repository: `git clone https://github.com/krivse/CheckCourseCoinsBot.git`
 2. Install the required dependencies: `pip install -r requirements.txt`
 3. Set up your Telegram bot by following the instructions provided by the BotFather.
-4. Rename the `my.env` file to .env and add your telegram bot token, CoinMarketCap API key, set the polling time.
+4. Rename the `my.env` file to .env and add your telegram bot token, CoinMarketCap API key, set the polling time (default is 20 seconds).
 5. Run the bot: `python main.py`
 
 ## Usage
@@ -29,6 +29,7 @@ Once the bot is running, you can interact with it through the Telegram app. Here
 
 * Repeating the algorithm will add another pair or set new values
 * When the threshold value is reached, the pair is automatically deleted
+* The default polling time is 20 seconds
 ~~~~
 
 #### Launch the application with docker-compose:
